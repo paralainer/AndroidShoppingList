@@ -24,47 +24,71 @@
             <ListView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:id="@id/goodsList" />
+                android:id="@id/goodsList"
+                android:choiceMode="singleChoice"
+                android:smoothScrollbar="true"
+                android:scrollingCache="true" />
+
         </FrameLayout>
 
-        <GridLayout
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:layout_gravity="center_horizontal|bottom"
-            android:columnOrderPreserved="true"
-            android:columnCount="4"
-            android:rowCount="1"
             android:layout_column="0"
-            android:layout_row="1">
+            android:layout_row="1"
+            android:background="@android:color/background_dark"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="-40dp">
 
-            <ImageButton
-                style="?android:attr/buttonStyleSmall"
+            <GridLayout
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:id="@+id/addNew"
-                android:layout_row="0"
-                android:layout_column="1"
-                android:src="@android:drawable/ic_menu_add"
-                android:background="@android:color/transparent"
-                android:layout_gravity="center_vertical|bottom"
-                android:contentDescription="@string/addNewButton"
-                android:onClick="onAddClick" />
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal|bottom"
+                android:columnOrderPreserved="true"
+                android:columnCount="4"
+                android:rowCount="1">
 
-            <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/recordNew"
-                android:src="@android:drawable/ic_btn_speak_now"
-                android:background="@android:color/transparent"
-                android:layout_row="0"
-                android:layout_column="2"
-                android:adjustViewBounds="false"
-                android:visibility="visible"
-                android:contentDescription="@string/recordButton"
-                android:onClick="onAddClick" />
-        </GridLayout>
+                <ImageButton
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/addNew"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:src="@android:drawable/ic_menu_add"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="center_vertical|bottom"
+                    android:contentDescription="@string/addNewButton"
+                    android:onClick="onAddClick" />
 
+                <ImageButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/recordNew"
+                    android:src="@android:drawable/ic_btn_speak_now"
+                    android:background="@android:color/transparent"
+                    android:layout_row="0"
+                    android:layout_column="2"
+                    android:adjustViewBounds="false"
+                    android:visibility="visible"
+                    android:contentDescription="@string/recordButton"
+                    android:onClick="onAddClick" />
+            </GridLayout>
+        </FrameLayout>
 
 
     </GridLayout>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@id/goodAddText"
+        android:inputType="text"
+        android:layout_gravity="top"
+        android:visibility="invisible"
+        android:autoText="false"
+        android:singleLine="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+
 </FrameLayout>

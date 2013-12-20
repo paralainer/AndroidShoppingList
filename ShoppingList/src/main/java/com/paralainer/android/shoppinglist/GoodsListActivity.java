@@ -11,8 +11,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.view.inputmethod.CompletionInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -22,42 +24,42 @@ import java.util.List;
 
 public class GoodsListActivity extends ActionBarActivity {
 
+    private List<String> goods;
+    private ListView goodsListView;
+    private EditText goodAddText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.goods_list);
 
-        final ListView listView = (ListView) findViewById(R.id.goodsList);
+        goodsListView = (ListView) findViewById(R.id.goodsList);
+        goodAddText = (EditText) findViewById(R.id.goodAddText);
 
-        final List<String> goods = new LinkedList<String>();
+        goods = new LinkedList<String>();
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, goods);
-        listView.setAdapter(adapter);
+        goodsListView.setAdapter(adapter);
+    }
 
-        ImageButton addButton = (ImageButton) findViewById(R.id.addNew);
-        addButton.setOnClickListener(new View.OnClickListener() {
+    public void onAddClick(View view) {
+        goodAddText.setVisibility(View.VISIBLE);
+        goodAddText.requestFocusFromTouch();
+        goodAddText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View view) {
-                Log.i("click", "add click");
-                goods.add("good");
-                adapter.notifyDataSetChanged();
-            }
-        });
-
-        ImageButton recordButton = (ImageButton) findViewById(R.id.recordNew);
-        recordButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i("click", "record click");
+            public void onFocusChange(View view, boolean b) {
+                addGood("good");
+                goodAddText.setVisibility(View.INVISIBLE);
             }
         });
     }
 
-    public void onAddClick(View view){
+    public void onRecordClick(View view) {
 
     }
 
-    public void onRecordClick(View view){
-        
+    private void addGood(String name) {
+        goods.add(name);
+        ((ArrayAdapter) goodsListView.getAdapter()).notifyDataSetChanged();
     }
 
     @Override
